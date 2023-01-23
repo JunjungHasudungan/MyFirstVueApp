@@ -1,4 +1,8 @@
 # my-first-vue
+Berisikan tentang
+- Membuat component
+- Berkomunikasi dari parent ke child component
+- Berkomunikasi dari child component ke parent 
 
 ## Project setup
 ```

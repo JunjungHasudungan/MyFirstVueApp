@@ -1,26 +1,57 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- call components -->
+    <shoes-list v-for="shoe in shoes" :key="shoe.id"
+    :id= shoe.id
+    :title="shoe.title"
+    :image-url="shoe.imageUrl"
+    :is-favorite="shoe.isFavorite"
+    @favorite-toogle="favoriteToggle"
+    ></shoes-list>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  data(){
+    return{
+      // data yang dimiliki parent
+      shoes:[
+        {
+          id: 1,
+          title: 'Adidas', 
+          imageUrl: 'https://api.lorem.space/image/shoes',
+          // add properties to handle like
+          isFavorite: false
+        }, 
+        {
+          id: 2,
+          title: 'Air Walk', 
+          imageUrl: 'https://api.lorem.space/image/shoes',
+          isFavorite: false
+        }, 
+        {
+          id: 3,
+          title: 'Converse70s', 
+          imageUrl: 'https://api.lorem.space/image/shoes',
+          isFavorite: true
+        }, 
+        {
+          id: 4,
+          title: 'Vans', 
+          imageUrl: 'https://api.lorem.space/image/shoes',
+          isFavorite: false
+        }, 
+      ]
+    }
+  },
+// registrasi methods
+  methods: {
+    // gunakan method yang dibuat dari child dan menggunakan parameter
+    favoriteToggle(shoeId){
+      // mencari shoe per item dari array shoes menggunakan method find
+      let selectShoe = this.shoes.find(shoe => shoe.id === shoeId)
+
+      selectShoe.isFavorite = !selectShoe.isFavorite
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
